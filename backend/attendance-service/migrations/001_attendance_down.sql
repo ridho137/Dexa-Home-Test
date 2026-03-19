@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS attendance.attendances CASCADE;
+DROP SCHEMA IF EXISTS attendance CASCADE;
+

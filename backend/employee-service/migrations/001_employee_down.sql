@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS employee.employees CASCADE;
+DROP SCHEMA IF EXISTS employee CASCADE;

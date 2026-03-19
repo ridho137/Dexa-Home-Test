@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthGrpc {
+  rpc CheckAccessToken (CheckTokenRequest) returns (CheckTokenResponse);
+  rpc CheckRefreshToken (CheckTokenRequest) returns (CheckTokenResponse);
+  rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
+}
+
+message CheckTokenRequest {
+  string token = 1;
+}
+
+message CheckTokenResponse {
+  bool valid = 1;
+  string userId = 2;
+  string sessionId = 3;
+  string email = 4;
+  string role = 5;
+  string errorCode = 6;
+}
+
+message ChangePasswordRequest {
+  string userId = 1;
+  string oldPassword = 2;
+  string newPassword = 3;
+}
+
+message ChangePasswordResponse {
+  bool success = 1;
+  string errorCode = 2;
+}
+

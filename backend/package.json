@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:gateway": "cd gateway && npm run start:dev",
+    "start:auth": "cd auth-service && npm run start:dev",
+    "start:attendance": "cd attendance-service && npm run start:dev",
+    "start:notification": "cd notification-service && npm run start:dev",
+    "start:employee": "cd employee-service && npm run start:dev",
+    "start:all": "npm-run-all --parallel start:gateway start:auth start:attendance start:notification start:employee",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.16",
+    "npm-run-all": "^4.1.5"
+  }
+}

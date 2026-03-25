@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AuthGrpcClient } from './auth/auth-grpc.client';
 import { JwtAccessGuard } from './auth/jwt-access.guard';
 import { AuthGatewayController } from './auth/auth-gateway.controller';
@@ -28,7 +27,6 @@ import { ProxyService } from './proxy/proxy.service';
   ],
   controllers: [AppController, AuthGatewayController, ProxyController],
   providers: [
-    AppService,
     AuthGrpcClient,
     JwtAccessGuard,
     AuthHttpService,

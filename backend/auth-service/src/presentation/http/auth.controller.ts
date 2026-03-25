@@ -8,9 +8,7 @@ import {
   Post,
   UnauthorizedException,
   Headers,
-  Req,
 } from '@nestjs/common';
-import type { Request } from 'express';
 import {
   LoginUseCase,
   InvalidCredentialsError,
@@ -66,13 +64,9 @@ export class AuthController {
 
   @Get('refresh')
   @HttpCode(HttpStatus.OK)
-  async refresh(@Req() req: Request) {
-    const credsHeader = req.headers['x-user-credentials'];
-
-    if (typeof credsHeader !== 'string') {
-      this.logger.warn(
-        'AuthController: missing x-user-credentials header on refresh',
-      );
+  async refresh(@Headers('x-user-credentials') credsHeader?: string) {
+    if (!credsHeader) {
+      this.logger.warn('AuthController: missing x-user-credentials header on refresh');
       throw new UnauthorizedException('MISSING_CREDENTIALS_HEADER');
     }
 
@@ -99,13 +93,9 @@ export class AuthController {
 
   @Delete('logout')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async logout(@Req() req: Request) {
-    const credsHeader = req.headers['x-user-credentials'];
-
-    if (typeof credsHeader !== 'string') {
-      this.logger.warn(
-        'AuthController: missing x-user-credentials header on logout',
-      );
+  async logout(@Headers('x-user-credentials') credsHeader?: string) {
+    if (!credsHeader) {
+      this.logger.warn('AuthController: missing x-user-credentials header on logout');
       throw new UnauthorizedException('MISSING_CREDENTIALS_HEADER');
     }
 

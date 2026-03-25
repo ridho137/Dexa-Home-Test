@@ -2,8 +2,6 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ScheduleModule } from '@nestjs/schedule';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AppLogger } from './infrastructure/logger/app-logger.service';
 import { AttendanceRepository } from './domain/repositories/attendance.repository';
 import { PgAttendanceRepository } from './infrastructure/repositories/pg-attendance.repository';
@@ -32,9 +30,8 @@ import { AttendanceAutoClockoutScheduler } from './schedulers/attendance-auto-cl
       },
     ]),
   ],
-  controllers: [AppController, AttendanceController],
+  controllers: [AttendanceController],
   providers: [
-    AppService,
     AppLogger,
     { provide: AttendanceRepository, useClass: PgAttendanceRepository },
     CreateAttendanceUseCase,

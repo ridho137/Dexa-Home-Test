@@ -1,8 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AppLogger } from './infrastructure/logger/app-logger.service';
 import { EmployeeRepository } from './domain/repositories/employee.repository';
 import { PgEmployeeRepository } from './infrastructure/repositories/pg-employee.repository';
@@ -37,13 +35,11 @@ import { NotificationRabbitMqPublisher } from './infrastructure/rabbitmq/notific
     ]),
   ],
   controllers: [
-    AppController,
     EmployeeController,
     AdminEmployeeController,
     EmployeeGrpcController,
   ],
   providers: [
-    AppService,
     AppLogger,
     { provide: EmployeeRepository, useClass: PgEmployeeRepository },
     S3StorageService,

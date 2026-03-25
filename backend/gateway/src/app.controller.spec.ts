@@ -1,6 +1,5 @@
 import { Test } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { JwtAccessGuard } from './auth/jwt-access.guard';
 import { AuthGrpcClient } from './auth/auth-grpc.client';
 import { AppLogger } from './infrastructure/logger/app-logger.service';
@@ -12,7 +11,6 @@ describe('AppController', () => {
     const app = (await Test.createTestingModule({
       controllers: [AppController],
       providers: [
-        AppService,
         JwtAccessGuard,
         AppLogger,
         {
@@ -28,9 +26,4 @@ describe('AppController', () => {
     appController = app.get(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
-  });
 });

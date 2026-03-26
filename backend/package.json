@@ -10,6 +10,12 @@
     "start:notification": "cd notification-service && npm run start:dev",
     "start:employee": "cd employee-service && npm run start:dev",
     "start:all": "npm-run-all --parallel start:gateway start:auth start:attendance start:notification start:employee",
+    "test:e2e:gateway": "cd gateway && npm run test:e2e",
+    "test:e2e:auth": "cd auth-service && npm run test:e2e",
+    "test:e2e:attendance": "cd attendance-service && npm run test:e2e",
+    "test:e2e:employee": "cd employee-service && npm run test:e2e",
+    "test:e2e:notification": "cd notification-service && npm run test:e2e",
+    "test:e2e:all": "npm-run-all test:e2e:gateway test:e2e:auth test:e2e:attendance test:e2e:employee test:e2e:notification",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
